@@ -69,9 +69,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm.h</File>
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">Generated_Source\PSoC5\cm3gcc.ld</File>
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">Generated_Source\PSoC5\Cm3RealView.scat</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Cm3Start.c</File>
@@ -125,6 +122,24 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_4.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_5_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_5.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_5.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\PC PESAGE\Documents\PSoC Creator\RobotArmControl\RobotArmControl.cydsn\Export\ARM_GCC_Generic">

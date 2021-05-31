@@ -251,9 +251,14 @@
   <Data key="DataVersionKey" value="2" />
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
+      <Data key="1fc80bd7-ad28-4497-ab8d-9c42c45341ae" value="Axe_3" />
+      <Data key="4b4d3751-5409-4546-b4c7-f8b02a86ea3d" value="Axe_4" />
       <Data key="8ae50e4e-f5e2-45a2-9170-0d5316c30533/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_1_Bypass" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="SW2" />
+      <Data key="9dfc66a3-fc36-421f-b1e5-13d4e3b2966f" value="Axe_2" />
       <Data key="55f14896-96b5-4002-af21-fbb6ef2225c0" value="SW3" />
+      <Data key="276c3383-50d4-4785-8991-ca5f5ba2ee04" value="Axe_5" />
+      <Data key="6312b675-9216-4dac-adb4-de1619f33113" value="Axe_1" />
       <Data key="b71ad568-b0a4-4888-9a21-3381c5e04dd8/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_Char_1_LCDPort" />
       <Data key="cae83f95-e62b-415c-8771-4d2610199105" value="POT" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Arm" />
@@ -3343,14 +3348,39 @@
     </Group>
   </Group>
   <Group key="Pin2">
+    <Group key="1fc80bd7-ad28-4497-ab8d-9c42c45341ae">
+      <Group key="0">
+        <Data key="Port Format" value="12,6" />
+      </Group>
+    </Group>
+    <Group key="4b4d3751-5409-4546-b4c7-f8b02a86ea3d">
+      <Group key="0">
+        <Data key="Port Format" value="12,5" />
+      </Group>
+    </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
       <Group key="0">
         <Data key="Port Format" value="6,1" />
       </Group>
     </Group>
+    <Group key="9dfc66a3-fc36-421f-b1e5-13d4e3b2966f">
+      <Group key="0">
+        <Data key="Port Format" value="12,7" />
+      </Group>
+    </Group>
     <Group key="55f14896-96b5-4002-af21-fbb6ef2225c0">
       <Group key="0">
         <Data key="Port Format" value="15,5" />
+      </Group>
+    </Group>
+    <Group key="276c3383-50d4-4785-8991-ca5f5ba2ee04">
+      <Group key="0">
+        <Data key="Port Format" value="12,4" />
+      </Group>
+    </Group>
+    <Group key="6312b675-9216-4dac-adb4-de1619f33113">
+      <Group key="0">
+        <Data key="Port Format" value="6,0" />
       </Group>
     </Group>
     <Group key="b71ad568-b0a4-4888-9a21-3381c5e04dd8/ed092b9b-d398-4703-be89-cebf998501f6">

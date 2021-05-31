@@ -22,9 +22,30 @@ int main(void)
     PWM_1_Start();
     ADC_SAR_1_Start();
     LCD_Char_1_Start();
+    uint8 ctrl = 2;
+    uint8 press = 0;
+    Control_Reg_1_Write(ctrl);
     
     for(;;)
     {
+        if(SW2_Read() == 0 && !press)
+        {   
+            if(ctrl == 0) ctrl++;;
+            ctrl--;
+            Control_Reg_1_Write(ctrl);
+            press = 1;
+        }
+        
+        if(SW3_Read() == 0 && !press)
+        {
+            if(ctrl == 5) ctrl--;
+            ctrl++;
+            Control_Reg_1_Write(ctrl);
+            press = 1;
+        }
+        
+        if(SW2_Read() && SW3_Read())press = 0;
+        
         ADC_SAR_1_StartConvert();
         ADC_SAR_1_IsEndConversion(ADC_SAR_1_WAIT_FOR_RESULT);
         res = ADC_SAR_1_GetResult16();
@@ -38,7 +59,8 @@ int main(void)
         calc = (2500 * res)/1023;
         if(calc <= 500) calc = 500;
         if(calc >= 2500) calc = 2500;
-        LCD_Char_1_PrintNumber(calc);
+        //LCD_Char_1_PrintNumber(calc);
+        LCD_Char_1_PrintNumber(Control_Reg_1_Read());
         PWM_1_WriteCompare(calc);
         CyDelay(1);
         LCD_Char_1_ClearDisplay();/**/
@@ -63,10 +85,9 @@ int main(void)
             PWM_1_WriteCompare(calc);
             CyDelay(100);
             LCD_Char_1_ClearDisplay();
-        }/**/
+        }*/
         /* Place your application code here. */
         
-        //667kHz - 400kHz
         
         
     }
