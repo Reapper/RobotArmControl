@@ -42,8 +42,8 @@ int main(void)
         CyDelay(100);
         LCD_Char_1_ClearDisplay();*/
         
-        //contre auto
-        /* 
+        //controle auto
+         
         for(int i = 100; i<1024; i++)
         {
             calc = (34 * i)/1023;
@@ -62,7 +62,7 @@ int main(void)
             PWM_1_WriteCompare(calc);
             CyDelay(1);
             LCD_Char_1_ClearDisplay();
-        }*/
+        }
         /* Place your application code here. */
         
         //667kHz - 400kHz
