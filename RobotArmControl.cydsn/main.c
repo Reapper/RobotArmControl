@@ -51,7 +51,7 @@ int main(void)
         res = ADC_SAR_1_GetResult16();
         
         LCD_Char_1_Position(0,0);
-        LCD_Char_1_PrintString("PWM :");
+        LCD_Char_1_PrintString("Axe N :");
         LCD_Char_1_Position(1,0);
         
         //controle potentiometre
@@ -62,7 +62,7 @@ int main(void)
         //LCD_Char_1_PrintNumber(calc);
         LCD_Char_1_PrintNumber(Control_Reg_1_Read());
         PWM_1_WriteCompare(calc);
-        CyDelay(1);
+        CyDelay(50);
         LCD_Char_1_ClearDisplay();/**/
         
         //contre auto
