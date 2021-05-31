@@ -34,35 +34,36 @@ int main(void)
         LCD_Char_1_Position(1,0);
         
         //controle potentiometre
-        /*
-        calc = (34 * res)/1023;
-        if(calc == 0) calc = 1;
+        
+        calc = (2500 * res)/1023;
+        if(calc <= 500) calc = 500;
+        if(calc >= 2500) calc = 2500;
         LCD_Char_1_PrintNumber(calc);
         PWM_1_WriteCompare(calc);
-        CyDelay(100);
-        LCD_Char_1_ClearDisplay();*/
+        CyDelay(1);
+        LCD_Char_1_ClearDisplay();/**/
         
         //contre auto
-        /* 
-        for(int i = 100; i<1024; i++)
+        /*
+        for(int i = 10; i<24; i++)
         {
-            calc = (34 * i)/1023;
+            calc = i;//(34 * i)/1023;
             if(calc == 0) calc = 1;
             LCD_Char_1_PrintNumber(calc);
             PWM_1_WriteCompare(calc);
-            CyDelay(1);
+            CyDelay(100);
             LCD_Char_1_ClearDisplay();
         }
         
-        for(int i = 1023; i>100; i--)
+        for(int i = 23; i>9; i--)
         {
-            calc = (34 * i)/1023;
+            calc = i;// (34 * i)/1023;
             if(calc == 0) calc = 1;
             LCD_Char_1_PrintNumber(calc);
             PWM_1_WriteCompare(calc);
-            CyDelay(1);
+            CyDelay(100);
             LCD_Char_1_ClearDisplay();
-        }*/
+        }/**/
         /* Place your application code here. */
         
         //667kHz - 400kHz
