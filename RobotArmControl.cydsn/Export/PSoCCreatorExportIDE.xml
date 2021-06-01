@@ -140,6 +140,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_6_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_6.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Axe_6.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\PC PESAGE\Documents\PSoC Creator\RobotArmControl\RobotArmControl.cydsn\Export\ARM_GCC_Generic">
