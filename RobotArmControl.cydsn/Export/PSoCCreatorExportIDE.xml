@@ -109,9 +109,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_INT.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_IRQ.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_IRQ.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ADC_SAR_1_theACLK.c</File>
@@ -125,6 +122,44 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_Char_1_LCDPort.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_4.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_5_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_5.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_5.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_6_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_6.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\POT_6.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\AMux_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\AMux_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Control_Reg_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_4.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_4.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_5_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_5.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Arm_5.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\PC PESAGE\Documents\PSoC Creator\RobotArmControl\RobotArmControl.cydsn\Export\ARM_GCC_Generic">
