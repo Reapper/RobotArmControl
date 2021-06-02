@@ -18,7 +18,7 @@
 #define MAIN  1
 #define CMD   2
 
-#define MOVESPEED 5
+#define MOVESPEED 1
 
 #include "project.h"
 
@@ -26,21 +26,21 @@
 
 uint8 flag = FREE;
               // Axe    1,  2,   3,   4,  5,   6
-uint16 PosAxes[6] = {1500,850,1500,1500,850,1500};
+uint16 PosAxes[6] = {1500,850,1500,1500,1500,1500};
 
 // *** FUNCTIONS *** //
 
 // Initialise la position du bras
 uint8 ResetPosition()
 {
-    uint8 j=1;
+    uint8 j=0;
     for(uint16 i=500; i<1501; i+=1)
     {
         Control_Reg_1_Write(j);
         PWM_1_WriteCompare(i);
         CyDelay(MOVESPEED);
         j+=1;
-        if(j < 6) j=1;
+        if(j < 6) j=0;
     }
     flag = MAIN;
     return TRUE;
@@ -49,9 +49,10 @@ uint8 ResetPosition()
 uint8 SteadyPosition()
 {
     for(uint8 i=0; i<6; i+=1)
-    {
+    {   
+        Control_Reg_1_Write(i);
         PWM_1_WriteCompare(PosAxes[i]);
-        CyDelay(50);
+        CyDelay(2);
     }
     flag = MAIN;
     return TRUE;
