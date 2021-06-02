@@ -10,7 +10,33 @@
  * ========================================
 */
 #include "project.h"
+// *** FUNCTIONS *** //
 
+void CloseHand(int muxAxe)
+{
+    Control_Reg_1_Write(muxAxe);
+    //AMux_1_Select(i);
+    for(int i=750;i<1501;++i) 
+    {
+        PWM_1_WriteCompare(i);
+        CyDelay(1);
+    }
+    //CyDelay(1500);
+}
+
+void OpenHand(int muxAxe)
+{
+    Control_Reg_1_Write(muxAxe);
+    //AMux_1_Select(i);
+    for(int i=1500;i>749;--i)
+    {
+        PWM_1_WriteCompare(i);
+        CyDelay(1);
+    }
+    //CyDelay(1500);
+}
+
+// *** MAIN *** //
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -21,6 +47,14 @@ int main(void)
     uint8 press = 0;
     uint8 ctrl = 0;
     
+    // Init position replier - par defaut
+    uint16 PosAxe1 = 1500;
+    uint16 PosAxe2 = 2000;
+    uint16 PosAxe3 = 2500;
+    uint16 PosAxe4 = 0;
+    uint16 PosAxe5 = 0;
+    uint16 PosAxe6 = 1500;
+    
     LCD_Char_1_Start();
     PWM_1_Start();
     ADC_SAR_1_Start();
@@ -28,6 +62,9 @@ int main(void)
     AMux_1_Start();
     AMux_1_Select(0);
     
+    if(SW2_Read() == 0) CloseHand(5);
+    if(SW3_Read() == 0) OpenHand(5);
+    /*
     for(int i = 0; i<7; i++)
     {
         Control_Reg_1_Write(i);
@@ -35,11 +72,14 @@ int main(void)
         PWM_1_WriteCompare(1500);
         CyDelay(1500);
     }
-    
+    */
     
     for(;;)
     {
-        if(SW2_Read() == 0 && !press)
+        if(SW2_Read() == 0) CloseHand(5);
+        if(SW3_Read() == 0) OpenHand(5);
+    
+        /*if(SW2_Read() == 0 && !press)
         {   
             if(ctrl == 0) ctrl++;;
             ctrl--;
@@ -84,7 +124,7 @@ int main(void)
             LCD_Char_1_ClearDisplay();
         
         //controle auto
-            /*
+            
         for(int i = 10; i < 1014; i++){
             calc = (2500 * res)/1023;
             if(calc <= 500) calc = 500;
