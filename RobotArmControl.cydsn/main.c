@@ -18,10 +18,13 @@
 #define MAIN  1
 #define CMD   2
 
+#define MOVESPEED 5
+
 #include "project.h"
 
 // *** GLOBAL VARS *** //
 
+uint8 flag = FREE;
               // Axe    1,  2,   3,   4,  5,   6
 uint16 PosAxes[6] = {1500,850,1500,1500,850,1500};
 
@@ -30,10 +33,16 @@ uint16 PosAxes[6] = {1500,850,1500,1500,850,1500};
 // Initialise la position du bras
 uint8 ResetPosition()
 {
-    for(uint8 i=0; i<6; i+=1)
+    uint8 j=1;
+    for(uint16 i=500; i<1501; i+=1)
     {
-        CyDelay(1);
+        Control_Reg_1_Write(j);
+        PWM_1_WriteCompare(i);
+        CyDelay(MOVESPEED);
+        j+=1;
+        if(j < 6) j=1;
     }
+    flag = MAIN;
     return TRUE;
 }
 // Maintien la position du bras
@@ -41,8 +50,10 @@ uint8 SteadyPosition()
 {
     for(uint8 i=0; i<6; i+=1)
     {
-        
+        PWM_1_WriteCompare(PosAxes[i]);
+        CyDelay(50);
     }
+    flag = MAIN;
     return TRUE;
 }
 
@@ -53,8 +64,10 @@ void CloseHand(uint8 muxAxe)
     for(int i=750 ;i<1501; i+=1) 
     {
         PWM_1_WriteCompare(i);
-        CyDelay(1);
+        CyDelay(MOVESPEED);
     }
+    PosAxes[5] = 1500;
+    flag = MAIN;
 } // END CloseHand
 
 // Ouverture de la pince
@@ -64,8 +77,10 @@ void OpenHand(uint8 muxAxe)
     for(int i=1500; i>749; i-=1)
     {
         PWM_1_WriteCompare(i);
-        CyDelay(1);
-    }    
+        CyDelay(MOVESPEED);
+    } 
+    PosAxes[5] = 750;
+    flag = MAIN;
 } // END OpenHand
 
 // *** MAIN *** //
@@ -92,15 +107,13 @@ int main(void)
     uint16 PosAxe5 = 850;
     uint16 PosAxe6 = 1500;
     */
-    
-    
-    LCD_Char_1_Start();
-    PWM_1_Start();
-    ADC_SAR_1_Start();
+    if(flag == FREE)
+    {
+        PWM_1_Start();
+        ResetPosition();
+        flag = MAIN;
+    }
 
-    AMux_1_Start();
-    AMux_1_Select(0);
-    
     /*
     for(int i = 0; i<7; i++)
     {
@@ -111,11 +124,20 @@ int main(void)
     }
     */
     
-    for(;;)
+    while(flag == MAIN)
     {
-        if(SW2_Read() == FALSE) CloseHand(5);
-        if(SW3_Read() == FALSE) OpenHand(5);
-    
+        SteadyPosition();
+        if(SW2_Read() == FALSE)
+        {
+            flag = CMD; 
+            CloseHand(5);
+        }
+        if(SW3_Read() == FALSE)
+        {
+            flag = CMD;
+            OpenHand(5);
+        }
+    }
         /*if(SW2_Read() == 0 && !press)
         {   
             if(ctrl == 0) ctrl++;;
@@ -184,9 +206,9 @@ int main(void)
             LCD_Char_1_ClearDisplay();
         }*/
        
-        
-        
-    }
+           
+ 
+   main();
 }
 
 /* [] END OF FILE */
