@@ -9,51 +9,90 @@
  *
  * ========================================
 */
+// Valeur booleene
+#define TRUE  1
+#define FALSE 0
+
+// Flags d'instructions
+#define FREE  0
+#define MAIN  1
+#define CMD   2
+
 #include "project.h"
+
+// *** GLOBAL VARS *** //
+
+              // Axe    1,  2,   3,   4,  5,   6
+uint16 PosAxes[6] = {1500,850,1500,1500,850,1500};
+
 // *** FUNCTIONS *** //
 
-void CloseHand(int muxAxe)
+// Initialise la position du bras
+uint8 ResetPosition()
 {
-    Control_Reg_1_Write(muxAxe);
-    //AMux_1_Select(i);
-    for(int i=750;i<1501;++i) 
+    for(uint8 i=0; i<6; i+=1)
     {
-        PWM_1_WriteCompare(i);
         CyDelay(1);
     }
-    //CyDelay(1500);
+    return TRUE;
+}
+// Maintien la position du bras
+uint8 SteadyPosition()
+{
+    for(uint8 i=0; i<6; i+=1)
+    {
+        
+    }
+    return TRUE;
 }
 
-void OpenHand(int muxAxe)
+// Fermeture de la pince
+void CloseHand(uint8 muxAxe)
 {
     Control_Reg_1_Write(muxAxe);
-    //AMux_1_Select(i);
-    for(int i=1500;i>749;--i)
+    for(int i=750 ;i<1501; i+=1) 
     {
         PWM_1_WriteCompare(i);
         CyDelay(1);
     }
-    //CyDelay(1500);
-}
+} // END CloseHand
+
+// Ouverture de la pince
+void OpenHand(uint8 muxAxe)
+{
+    Control_Reg_1_Write(muxAxe);
+    for(int i=1500; i>749; i-=1)
+    {
+        PWM_1_WriteCompare(i);
+        CyDelay(1);
+    }    
+} // END OpenHand
 
 // *** MAIN *** //
 int main(void)
 {
-    CyGlobalIntEnable; /* Enable global interrupts. */
+    // Enable global interrupts. 
+    CyGlobalIntEnable; 
 
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+    // Place your initialization/startup code here (e.g. MyInst_Start())
+    
+    /*
     uint16 res;
     uint16 calc;
     uint8 press = 0;
     uint8 ctrl = 0;
+    */
     
     // Init position replier - par defaut
+    /*
     uint16 PosAxe1 = 1500;
-    uint16 PosAxe2 = 2000;
-    uint16 PosAxe3 = 2500;
-    uint16 PosAxe4 = 0;
-    uint16 PosAxe5 = 0;
+    uint16 PosAxe2 = 850;
+    uint16 PosAxe3 = 1500;
+    uint16 PosAxe4 = 1500;
+    uint16 PosAxe5 = 850;
     uint16 PosAxe6 = 1500;
+    */
+    
     
     LCD_Char_1_Start();
     PWM_1_Start();
@@ -62,8 +101,6 @@ int main(void)
     AMux_1_Start();
     AMux_1_Select(0);
     
-    if(SW2_Read() == 0) CloseHand(5);
-    if(SW3_Read() == 0) OpenHand(5);
     /*
     for(int i = 0; i<7; i++)
     {
@@ -76,8 +113,8 @@ int main(void)
     
     for(;;)
     {
-        if(SW2_Read() == 0) CloseHand(5);
-        if(SW3_Read() == 0) OpenHand(5);
+        if(SW2_Read() == FALSE) CloseHand(5);
+        if(SW3_Read() == FALSE) OpenHand(5);
     
         /*if(SW2_Read() == 0 && !press)
         {   
