@@ -1,11 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
+ * Copyright Pesage du Sud-Ouest, 2021
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
  * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * WHICH IS THE PROPERTY OF Pesage du Sud-Ouest.
  *
  * ========================================
 */
@@ -18,6 +18,9 @@
 #define MAIN  1
 #define CMD   2
 
+// Rapidité des mouvement
+// 0 plus rapide | 10+ moins rapide
+// defaut 1
 #define MOVESPEED 1
 
 #include "project.h"
@@ -26,6 +29,7 @@
 
 uint8 flag = FREE;
               // Axe    1,  2,   3,   4,  5,   6
+uint16 InitPosAxes[6] = {1500,850,1500,1500,1500,1500};
 uint16 PosAxes[6] = {1500,850,1500,1500,1500,1500};
 
 // *** FUNCTIONS *** //
@@ -33,56 +37,105 @@ uint16 PosAxes[6] = {1500,850,1500,1500,1500,1500};
 // Initialise la position du bras
 uint8 ResetPosition()
 {
-    uint8 j=0;
-    for(uint16 i=500; i<1501; i+=1)
+   flag = MAIN;
+   return TRUE;
+}// END ResetPosition
+
+// Controle des Axes
+
+// Axe rotation bras
+uint8 Axe1(uint16 newPos)
+{
+    while(newPos != PosAxes[0])
     {
-        Control_Reg_1_Write(j);
-        PWM_1_WriteCompare(i);
         CyDelay(MOVESPEED);
-        j+=1;
-        if(j < 6) j=0;
+        PWM_1_WriteCompare(PosAxes[0]);
+        if(PosAxes[0] <= newPos)PosAxes[0]++;
+        else if(newPos <= PosAxes[0])PosAxes[0]--;
+        else newPos++;
     }
     flag = MAIN;
     return TRUE;
-}
-// Maintien la position du bras
-uint8 SteadyPosition()
+} // END Axe1
+
+// Axe bras
+uint8 Axe2(uint16 newPos)
 {
-    for(uint8 i=0; i<6; i+=1)
+    while(newPos != PosAxes[1])
+    {
+        CyDelay(MOVESPEED);
+        PWM_2_WriteCompare(PosAxes[1]);
+        if(PosAxes[0] <= newPos)PosAxes[1]++;
+        else if(newPos <= PosAxes[0])PosAxes[1]--;
+        else newPos++;
+    }
+    flag = MAIN;
+    return TRUE;
+    flag = MAIN;
+    return TRUE;
+}// END Axe2
+
+// Axe avant-bras
+uint8 Axe3(uint16 newPos)
+{
+    while(newPos != PosAxes[2])
+    {
+        CyDelay(MOVESPEED);
+        PWM_1_WriteCompare(PosAxes[2]);
+        if(PosAxes[0] <= newPos)PosAxes[2]++;
+        else if(newPos <= PosAxes[0])PosAxes[2]--;
+        else newPos++;
+    }
+    flag = MAIN;
+    return TRUE;
+}// END Axe3
+
+// Axe rotation poigné
+uint8 Axe4(uint16 newPos)
+{
+    while(newPos != PosAxes[3])
+    {
+        CyDelay(MOVESPEED);
+        PWM_1_WriteCompare(PosAxes[3]);
+        if(PosAxes[0] <= newPos)PosAxes[3]++;
+        else if(newPos <= PosAxes[0])PosAxes[3]--;
+        else newPos++;
+    }
+    flag = MAIN;
+    return TRUE;
+}// END Axe4
+
+// Axe pivot poigné
+uint8 Axe5(uint16 newPos)
+{
+    while(newPos != PosAxes[4])
+    {
+        CyDelay(MOVESPEED);
+        PWM_1_WriteCompare(PosAxes[4]);
+        if(PosAxes[0] <= newPos)PosAxes[4]++;
+        else if(newPos <= PosAxes[0])PosAxes[4]--;
+        else newPos++;
+    }
+    flag = MAIN;
+    return TRUE;
+}// END Axe5
+
+// Axe pince
+uint8 Axe6(uint16 newPos)
+{
+    if(1600 <= newPos) newPos = 1600;
+    if(newPos <= 750) newPos = 750;
+    while(newPos != PosAxes[5])
     {   
-        Control_Reg_1_Write(i);
-        PWM_1_WriteCompare(PosAxes[i]);
-        CyDelay(2);
+        CyDelay(MOVESPEED);
+        PWM_6_WriteCompare(PosAxes[5]);
+        if(PosAxes[0] <= newPos)PosAxes[5]++;
+        else if(newPos <= PosAxes[0])PosAxes[5]--;
+        else newPos++;
     }
     flag = MAIN;
     return TRUE;
-}
-
-// Fermeture de la pince
-void CloseHand(uint8 muxAxe)
-{
-    Control_Reg_1_Write(muxAxe);
-    for(int i=750 ;i<1501; i+=1) 
-    {
-        PWM_1_WriteCompare(i);
-        CyDelay(MOVESPEED);
-    }
-    PosAxes[5] = 1500;
-    flag = MAIN;
-} // END CloseHand
-
-// Ouverture de la pince
-void OpenHand(uint8 muxAxe)
-{
-    Control_Reg_1_Write(muxAxe);
-    for(int i=1500; i>749; i-=1)
-    {
-        PWM_1_WriteCompare(i);
-        CyDelay(MOVESPEED);
-    } 
-    PosAxes[5] = 750;
-    flag = MAIN;
-} // END OpenHand
+}// END Axe6
 
 // *** MAIN *** //
 int main(void)
@@ -111,9 +164,21 @@ int main(void)
     if(flag == FREE)
     {
         PWM_1_Start();
-        ResetPosition();
+        PWM_2_Start();
+        PWM_3_Start();
+        PWM_4_Start();
+        PWM_5_Start();
+        PWM_6_Start();
+        
+        PWM_1_WriteCompare(PosAxes[0]);
+        PWM_2_WriteCompare(PosAxes[1]);
+        PWM_3_WriteCompare(PosAxes[2]);
+        PWM_4_WriteCompare(PosAxes[3]);
+        PWM_5_WriteCompare(PosAxes[4]);
+        PWM_6_WriteCompare(PosAxes[5]);
+        //ResetPosition();
         flag = MAIN;
-    }
+    }// END if(flag == FREE)
 
     /*
     for(int i = 0; i<7; i++)
@@ -127,18 +192,20 @@ int main(void)
     
     while(flag == MAIN)
     {
-        SteadyPosition();
+        
         if(SW2_Read() == FALSE)
         {
             flag = CMD; 
-            CloseHand(5);
+            //CloseHand();
+            Axe6(500);
         }
         if(SW3_Read() == FALSE)
         {
             flag = CMD;
-            OpenHand(5);
+            //OpenHand();
+            Axe6(2500);
         }
-    }
+    } // END while(flag == MAIN)
         /*if(SW2_Read() == 0 && !press)
         {   
             if(ctrl == 0) ctrl++;;
@@ -210,6 +277,6 @@ int main(void)
            
  
    main();
-}
+} // END main
 
 /* [] END OF FILE */
