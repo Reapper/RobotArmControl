@@ -59,8 +59,10 @@ int main(void)
         calc = (2500 * res)/1023;
         if(calc <= 500) calc = 500;
         if(calc >= 2500) calc = 2500;
-        //LCD_Char_1_PrintNumber(calc);
+        LCD_Char_1_Position(0,8);
         LCD_Char_1_PrintNumber(Control_Reg_1_Read());
+        LCD_Char_1_Position(1,0);
+        LCD_Char_1_PrintNumber(calc);
         PWM_1_WriteCompare(calc);
         CyDelay(50);
         LCD_Char_1_ClearDisplay();/**/
