@@ -35,7 +35,12 @@ uint16 InitPosAxes[6] = {1500,  // Axe 1
                          1500,  // Axe 4
                          1500,  // Axe 5
                          1500}; // Axe 6
-uint16 PosAxes[6] = {};
+uint16 PosAxes[6] = {1500,  // Axe 1
+                         1500,  // Axe 2
+                         1500,  // Axe 3
+                         1500,  // Axe 4
+                         1500,  // Axe 5
+                         1500};
 
 // *** FUNCTIONS *** //
 
@@ -112,8 +117,8 @@ uint8 Axe4(uint16 newPos, uint8 movespeed)
 // Axe pivot poigné
 uint8 Axe5(uint16 newPos, uint8 movespeed)
 {
-    if(2500 <= newPos) newPos = 2500;
-    if(newPos <= 500) newPos = 500;
+    if(2500 <= newPos) newPos = 2500; // fermeture
+    if(newPos <= 500) newPos = 500; // ouverture
     while(newPos != PosAxes[4])
     {
         CyDelay(MOVESPEED * movespeed);
@@ -152,6 +157,16 @@ uint8 ResetPosition()
     uint8 const speedDivider = 3;
     
     LCD_Char_1_ClearDisplay();
+    LCD_Char_1_PrintString("INIT AXE 1");
+    Axe1(1000,speedDivider);
+    CyDelay(100);
+    Axe1(2000,speedDivider);
+    CyDelay(100);
+    Axe1(InitPosAxes[0],speedDivider);
+    CyDelay(100);
+    
+    /*
+    LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 2");
     Axe2(1700,speedDivider);
     CyDelay(100);
@@ -163,7 +178,7 @@ uint8 ResetPosition()
     LCD_Char_1_PrintString("INIT AXE 5");
     Axe5(minRange+500,speedDivider);
     CyDelay(100);
-    Axe5(maxRange+500,speedDivider);
+    Axe5(maxRange+400,speedDivider);
     CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
@@ -174,7 +189,7 @@ uint8 ResetPosition()
     CyDelay(100);
     Axe1(InitPosAxes[0],speedDivider);
     CyDelay(100);
-
+    
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 3");
     CyDelay(100);
@@ -206,9 +221,9 @@ uint8 ResetPosition()
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("REPLACE AXE 1");
-    Axe1(minRange-500,speedDivider);
+    Axe1(minRange-400,speedDivider);
     CyDelay(100);
-    Axe1(maxRange+500,speedDivider);
+    Axe1(maxRange+400,speedDivider);
     CyDelay(100);
     Axe1(InitPosAxes[0],speedDivider);
     CyDelay(100);
@@ -218,7 +233,7 @@ uint8 ResetPosition()
     Axe6(500,1);
     Axe6(2500,1);
     
-    
+    */
     flag = MAIN;
     return TRUE;
 }// END ResetPosition
@@ -230,23 +245,8 @@ int main(void)
     CyGlobalIntEnable; 
 
     // Place your initialization/startup code here (e.g. MyInst_Start())
-    
-    /*
-    uint16 res;
-    uint16 calc;
-    uint8 press = 0;
-    uint8 ctrl = 0;
-    */
-    
-    // Init position replier - par defaut
-    /*
-    uint16 PosAxe1 = 1500;
-    uint16 PosAxe2 = 850;
-    uint16 PosAxe3 = 1500;
-    uint16 PosAxe4 = 1500;
-    uint16 PosAxe5 = 850;
-    uint16 PosAxe6 = 1500;
-    */
+    uint8 unpress = TRUE;
+    uint8 done = FALSE;
     if(flag == FREE)
     {
         PWM_1_Start();
@@ -269,18 +269,35 @@ int main(void)
         
         if(SW2_Read() == FALSE)
         {
-            flag = CMD; 
-            //CloseHand();
-            Axe6(850,1);
+            if(unpress == TRUE)
+            {
+                flag = CMD;
+                Axe1(PosAxes[0]+100,1);
+            }
+            unpress = FALSE;
             
         }
         if(SW3_Read() == FALSE)
         {
-            flag = CMD;
-            //OpenHand();
-            Axe6(1500,1);
-           
+            if(unpress == TRUE)
+            {
+                flag = CMD;
+                Axe1(PosAxes[0]-100,1);
+            }
+            unpress = FALSE;
+            
         }
+        
+        if(SW2_Read() == TRUE && SW3_Read() == TRUE && unpress == FALSE)unpress = TRUE;
+        if(SW2_Read() == FALSE && SW3_Read() == FALSE && unpress == TRUE)Axe1(1500,1);
+        
+        if(1)
+        {
+            Axe1(1050,3);
+            Axe6(500,1);
+            done = TRUE;
+        }
+        
     } // END while(flag == MAIN)
         
        
