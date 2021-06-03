@@ -31,10 +31,10 @@ uint8 flag = FREE;
               
 uint16 InitPosAxes[6] = {1500,  // Axe 1
                          1500,  // Axe 2
-                         1400,  // Axe 3
+                         1500,  // Axe 3
                          1500,  // Axe 4
                          1500,  // Axe 5
-                         1600}; // Axe 6
+                         1500}; // Axe 6
 uint16 PosAxes[6] = {};
 
 // *** FUNCTIONS *** //
@@ -129,7 +129,7 @@ uint8 Axe5(uint16 newPos, uint8 movespeed)
 // Axe pince
 uint8 Axe6(uint16 newPos, uint8 movespeed)
 {
-    if(1600 <= newPos) newPos = 1600;
+    if(1500 <= newPos) newPos = 1500;
     if(newPos <= 750) newPos = 750;
     while(newPos != PosAxes[5])
     {   
@@ -147,52 +147,77 @@ uint8 Axe6(uint16 newPos, uint8 movespeed)
 // Initialise la position du bras
 uint8 ResetPosition()
 {
-    uint16 const minRange = 500;
+    uint16 const minRange = 1000;
     uint16 const maxRange = 2000;
     uint8 const speedDivider = 3;
     
     LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 1");
-    Axe1(minRange,speedDivider);
-    Axe1(maxRange,speedDivider);
-    Axe1(InitPosAxes[0],speedDivider);
+    LCD_Char_1_PrintString("INIT AXE 2");
+    Axe2(1700,speedDivider);
+    CyDelay(100);
+    Axe2(InitPosAxes[1],speedDivider);
+    CyDelay(100);
+    
     
     LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 2");
-    //PWM_3_Stop();
-    //Axe2(1000,speedDivider);
-    //Axe2(1700,speedDivider);
-    Axe2(InitPosAxes[1],speedDivider);
-    //PWM_3_Start();
+    LCD_Char_1_PrintString("INIT AXE 5");
+    Axe5(minRange+500,speedDivider);
+    CyDelay(100);
+    Axe5(maxRange+500,speedDivider);
+    CyDelay(100);
     
+    LCD_Char_1_ClearDisplay();
+    LCD_Char_1_PrintString("INIT AXE 1");
+    Axe1(minRange-500,speedDivider);
+    CyDelay(100);
+    Axe1(maxRange+500,speedDivider);
+    CyDelay(100);
+    Axe1(InitPosAxes[0],speedDivider);
+    CyDelay(100);
+
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 3");
-    //Axe3(minRange,speedDivider);
-    //Axe3(maxRange,speedDivider);
+    CyDelay(100);
     Axe3(InitPosAxes[2],speedDivider);
+    CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 4");
     Axe4(minRange,speedDivider);
+    CyDelay(100);
     Axe4(maxRange,speedDivider);
+    CyDelay(100);
     Axe4(InitPosAxes[3],speedDivider);
+    CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 5");
-    Axe5(minRange,speedDivider);
-    Axe5(maxRange,speedDivider);
+    LCD_Char_1_PrintString("REPLACE AXE 5");
     Axe5(InitPosAxes[4],speedDivider);
+    CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 6");
     Axe6(maxRange,speedDivider);
+    CyDelay(100);
     Axe6(minRange,speedDivider);
+    CyDelay(100);
     Axe6(InitPosAxes[5],speedDivider);
+    CyDelay(100);
+    
+    LCD_Char_1_ClearDisplay();
+    LCD_Char_1_PrintString("REPLACE AXE 1");
+    Axe1(minRange-500,speedDivider);
+    CyDelay(100);
+    Axe1(maxRange+500,speedDivider);
+    CyDelay(100);
+    Axe1(InitPosAxes[0],speedDivider);
+    CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT OK");
     Axe6(500,1);
     Axe6(2500,1);
+    
     
     flag = MAIN;
     return TRUE;
@@ -261,7 +286,7 @@ int main(void)
        
            
  
-   main();
+   //main();
 } // END main
 
 /* [] END OF FILE */
