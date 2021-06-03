@@ -31,8 +31,8 @@ uint8 flag = FREE;
               
 uint16 InitPosAxes[6] = {1500,  // Axe 1
                          1500,  // Axe 2
-                         1500,  // Axe 3
-                         1400,  // Axe 4
+                         1400,  // Axe 3
+                         1500,  // Axe 4
                          1500,  // Axe 5
                          1600}; // Axe 6
 uint16 PosAxes[6] = {};
@@ -147,9 +147,10 @@ uint8 Axe6(uint16 newPos, uint8 movespeed)
 // Initialise la position du bras
 uint8 ResetPosition()
 {
-    uint16 const minRange = 850;
-    uint16 const maxRange = 1850;
+    uint16 const minRange = 500;
+    uint16 const maxRange = 2000;
     uint8 const speedDivider = 3;
+    /*
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 1");
     Axe1(minRange,speedDivider);
@@ -168,14 +169,14 @@ uint8 ResetPosition()
     LCD_Char_1_PrintString("INIT AXE 3");
     //Axe3(minRange,speedDivider);
     //Axe3(maxRange,speedDivider);
-    Axe3(InitPosAxes[2],speedDivider);
+    Axe3(InitPosAxes[2],speedDivider);*/
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 4");
     Axe4(minRange,speedDivider);
     Axe4(maxRange,speedDivider);
     Axe4(InitPosAxes[3],speedDivider);
-    
+    /*
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 5");
     Axe5(minRange,speedDivider);
@@ -187,7 +188,7 @@ uint8 ResetPosition()
     Axe6(maxRange,speedDivider);
     Axe6(minRange,speedDivider);
     Axe6(InitPosAxes[5],speedDivider);
-    
+    */
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT OK");
     Axe6(500,1);
