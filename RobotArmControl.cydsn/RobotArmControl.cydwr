@@ -255,23 +255,23 @@
       <Data key="1ab9fc6d-7078-4267-94d1-bf50c588b029" value="SW3" />
       <Data key="8acc64a6-a70c-4e38-b388-d2ab0b288ec2/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_6_Bypass" />
       <Data key="8ae50e4e-f5e2-45a2-9170-0d5316c30533/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_1_Bypass" />
-      <Data key="8cc6498d-4cf8-46e7-9f79-68cbbb139d32" value="Arm_4" />
+      <Data key="8cc6498d-4cf8-46e7-9f79-68cbbb139d32" value="AXE_5" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="SW2" />
       <Data key="9a81cc09-2eb5-4b65-81e0-de36440ba39f/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_4_Bypass" />
-      <Data key="47a9e8ca-f45e-4e73-bef3-d504cf597bc3" value="Arm_5" />
+      <Data key="47a9e8ca-f45e-4e73-bef3-d504cf597bc3" value="AXE_6" />
       <Data key="51caffb3-9989-4cab-ad89-d5e161438873/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_3_Bypass" />
       <Data key="55f14896-96b5-4002-af21-fbb6ef2225c0" value="SW3" />
-      <Data key="62a3ae0f-d630-4fce-8f38-8340ba451917" value="Arm_3" />
+      <Data key="62a3ae0f-d630-4fce-8f38-8340ba451917" value="AXE_4" />
       <Data key="80e5ac57-6eb7-40e7-95bc-b103641c3f34" value="POT_5" />
       <Data key="3548d5e0-f573-4cc4-9ee5-a8e8374fac4b" value="POT_6" />
-      <Data key="604015f9-aa94-4e57-bf34-a7b442f80bd2" value="Arm_1" />
+      <Data key="604015f9-aa94-4e57-bf34-a7b442f80bd2" value="AXE_2" />
       <Data key="b71ad568-b0a4-4888-9a21-3381c5e04dd8/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_Char_1_LCDPort" />
       <Data key="bcc239e7-b68f-4c76-a38e-07f894b84b7a" value="POT_3" />
       <Data key="cae83f95-e62b-415c-8771-4d2610199105" value="POT_1" />
       <Data key="caf17a6f-edc9-4511-89af-4044b88e9813" value="POT_4" />
-      <Data key="cb147438-035a-4385-81b4-cb49e362b650" value="Arm_2" />
+      <Data key="cb147438-035a-4385-81b4-cb49e362b650" value="AXE_3" />
       <Data key="d4dae2f9-5331-4ed4-a1d0-bdbb8a070bda/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_2_Bypass" />
-      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Arm" />
+      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="AXE_1" />
       <Data key="ffcc0395-d092-4818-b885-4c34669cf552" value="POT_2" />
     </Group>
   </Group>
@@ -3366,7 +3366,7 @@
     </Group>
     <Group key="8cc6498d-4cf8-46e7-9f79-68cbbb139d32">
       <Group key="0">
-        <Data key="Port Format" value="12,5" />
+        <Data key="Port Format" value="4,1" />
       </Group>
     </Group>
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
@@ -3376,7 +3376,7 @@
     </Group>
     <Group key="47a9e8ca-f45e-4e73-bef3-d504cf597bc3">
       <Group key="0">
-        <Data key="Port Format" value="12,4" />
+        <Data key="Port Format" value="4,3" />
       </Group>
     </Group>
     <Group key="55f14896-96b5-4002-af21-fbb6ef2225c0">
@@ -3386,7 +3386,7 @@
     </Group>
     <Group key="62a3ae0f-d630-4fce-8f38-8340ba451917">
       <Group key="0">
-        <Data key="Port Format" value="12,6" />
+        <Data key="Port Format" value="4,6" />
       </Group>
     </Group>
     <Group key="80e5ac57-6eb7-40e7-95bc-b103641c3f34">
@@ -3401,7 +3401,7 @@
     </Group>
     <Group key="604015f9-aa94-4e57-bf34-a7b442f80bd2">
       <Group key="0">
-        <Data key="Port Format" value="6,0" />
+        <Data key="Port Format" value="4,2" />
       </Group>
     </Group>
     <Group key="b71ad568-b0a4-4888-9a21-3381c5e04dd8/ed092b9b-d398-4703-be89-cebf998501f6">
@@ -3444,12 +3444,12 @@
     </Group>
     <Group key="cb147438-035a-4385-81b4-cb49e362b650">
       <Group key="0">
-        <Data key="Port Format" value="12,7" />
+        <Data key="Port Format" value="4,4" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
       <Group key="0">
-        <Data key="Port Format" value="6,6" />
+        <Data key="Port Format" value="4,0" />
       </Group>
     </Group>
     <Group key="ffcc0395-d092-4818-b885-4c34669cf552">
