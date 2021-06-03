@@ -38,7 +38,7 @@ int main(void)
         
         if(SW3_Read() == 0 && !press)
         {
-            if(ctrl == 6) ctrl--;
+            if(ctrl == 5) ctrl--;
             ctrl++;
             Control_Reg_1_Write(ctrl);
             press = 1;
