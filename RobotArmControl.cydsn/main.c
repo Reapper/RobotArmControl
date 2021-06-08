@@ -9,6 +9,7 @@
  *
  * ========================================
 */
+
 // Valeur booleene
 #define TRUE  1
 #define FALSE 0
@@ -148,6 +149,36 @@ uint8 Axe6(uint16 newPos, uint8 movespeed)
     return TRUE;
 }// END Axe6
 
+uint8 Axe2n3(uint16 newPosAxe2,uint16 newPosAxe3, uint8 movespeed)
+{
+    if(2500 <= newPosAxe2) newPosAxe2 = 2500;
+    if(newPosAxe2 <= 500) newPosAxe2 = 500;
+    
+    if(2500 <= newPosAxe3) newPosAxe3 = 2500;
+    if(newPosAxe3 <= 500) newPosAxe3 = 500;
+    
+    while(newPosAxe2 != PosAxes[1] && newPosAxe3 != PosAxes[2])
+    {
+        CyDelay(MOVESPEED * movespeed);
+        PWM_2_WriteCompare(PosAxes[1]);
+        PWM_3_WriteCompare(PosAxes[2]);
+        
+        //switch(
+        if(PosAxes[1] <= newPosAxe2 && PosAxes[2] <= newPosAxe3)
+        {
+            PosAxes[1]++;
+            PosAxes[2]++;
+        } else if(newPos <= PosAxes[1] && )
+        {
+            PosAxes[1]--;
+        }
+        else newPos++;
+    }
+    
+    flag = MAIN;
+    return TRUE;
+}
+
 // 
 // Initialise la position du bras
 uint8 ResetPosition()
@@ -157,41 +188,27 @@ uint8 ResetPosition()
     uint8 const speedDivider = 3;
     
     LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 1");
-    Axe1(1000,speedDivider);
-    CyDelay(100);
-    Axe1(2000,speedDivider);
-    CyDelay(100);
-    Axe1(InitPosAxes[0],speedDivider);
-    CyDelay(100);
-    
-    /*
-    LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 2");
-    Axe2(1700,speedDivider);
-    CyDelay(100);
-    Axe2(InitPosAxes[1],speedDivider);
-    CyDelay(100);
-    
-    
-    LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 5");
-    Axe5(minRange+500,speedDivider);
+    Axe5(minRange,speedDivider);
     CyDelay(100);
     Axe5(maxRange+400,speedDivider);
     CyDelay(100);
     
+    
     LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("INIT AXE 1");
-    Axe1(minRange-500,speedDivider);
+    LCD_Char_1_PrintString("INIT AXE 2");
+    Axe2(minRange,speedDivider);
     CyDelay(100);
-    Axe1(maxRange+500,speedDivider);
+    Axe2(maxRange-500,speedDivider);
     CyDelay(100);
-    Axe1(InitPosAxes[0],speedDivider);
+    Axe2(InitPosAxes[1],speedDivider);
     CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("INIT AXE 3");
+    Axe3(minRange+500,speedDivider);
+    CyDelay(100);
+    Axe3(maxRange,speedDivider);
     CyDelay(100);
     Axe3(InitPosAxes[2],speedDivider);
     CyDelay(100);
@@ -206,6 +223,15 @@ uint8 ResetPosition()
     CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
+    LCD_Char_1_PrintString("INIT AXE 1");
+    Axe1(minRange,speedDivider);
+    CyDelay(100);
+    Axe1(maxRange,speedDivider);
+    CyDelay(100);
+    Axe1(InitPosAxes[0],speedDivider);
+    CyDelay(100);
+    
+    LCD_Char_1_ClearDisplay();
     LCD_Char_1_PrintString("REPLACE AXE 5");
     Axe5(InitPosAxes[4],speedDivider);
     CyDelay(100);
@@ -214,18 +240,9 @@ uint8 ResetPosition()
     LCD_Char_1_PrintString("INIT AXE 6");
     Axe6(maxRange,speedDivider);
     CyDelay(100);
-    Axe6(minRange,speedDivider);
+    Axe6(maxRange,speedDivider);
     CyDelay(100);
     Axe6(InitPosAxes[5],speedDivider);
-    CyDelay(100);
-    
-    LCD_Char_1_ClearDisplay();
-    LCD_Char_1_PrintString("REPLACE AXE 1");
-    Axe1(minRange-400,speedDivider);
-    CyDelay(100);
-    Axe1(maxRange+400,speedDivider);
-    CyDelay(100);
-    Axe1(InitPosAxes[0],speedDivider);
     CyDelay(100);
     
     LCD_Char_1_ClearDisplay();
@@ -233,10 +250,38 @@ uint8 ResetPosition()
     Axe6(500,1);
     Axe6(2500,1);
     
-    */
+    
     flag = MAIN;
     return TRUE;
 }// END ResetPosition
+
+uint8 returnToZero()
+{
+    
+    Axe3(1600,1);
+    CyDelay(100);
+    
+    Axe2(1400,1);
+    CyDelay(100);
+    
+    //Axe2(1500,3);
+    //CyDelay(100);
+    
+    Axe4(1500,1);
+    CyDelay(100);
+    
+    Axe5(1500,1);
+    CyDelay(100);
+    
+    Axe1(1500,1);
+    CyDelay(100);
+    
+    Axe6(1500,1);
+    CyDelay(100);
+    
+    flag = MAIN;
+    return TRUE;
+}
 
 // *** MAIN *** //
 int main(void)
@@ -246,7 +291,7 @@ int main(void)
 
     // Place your initialization/startup code here (e.g. MyInst_Start())
     uint8 unpress = TRUE;
-    uint8 done = FALSE;
+    uint8 working = TRUE;
     if(flag == FREE)
     {
         PWM_1_Start();
@@ -255,11 +300,18 @@ int main(void)
         PWM_4_Start();
         PWM_5_Start();
         PWM_6_Start();
+    
+        PWM_1_WriteCompare(PosAxes[0]);
+        PWM_2_WriteCompare(PosAxes[1]-100);
+        PWM_3_WriteCompare(PosAxes[2]+100);
+        PWM_4_WriteCompare(PosAxes[3]);
+        PWM_5_WriteCompare(PosAxes[4]);
+        PWM_6_WriteCompare(PosAxes[5]);
         
         LCD_Char_1_Start();
         LCD_Char_1_ClearDisplay();
         
-        ResetPosition();
+        //ResetPosition();
         flag = MAIN;
     }// END if(flag == FREE)
 
@@ -272,7 +324,9 @@ int main(void)
             if(unpress == TRUE)
             {
                 flag = CMD;
-                Axe1(PosAxes[0]+100,1);
+                returnToZero();
+                LCD_Char_1_ClearDisplay();
+                LCD_Char_1_PrintString("R2Z OK");
             }
             unpress = FALSE;
             
@@ -281,8 +335,9 @@ int main(void)
         {
             if(unpress == TRUE)
             {
-                flag = CMD;
-                Axe1(PosAxes[0]-100,1);
+                working = TRUE;
+                //flag = CMD;
+                //Axe1(PosAxes[0]-100,1);
             }
             unpress = FALSE;
             
@@ -291,11 +346,15 @@ int main(void)
         if(SW2_Read() == TRUE && SW3_Read() == TRUE && unpress == FALSE)unpress = TRUE;
         if(SW2_Read() == FALSE && SW3_Read() == FALSE && unpress == TRUE)Axe1(1500,1);
         
-        if(1)
+        if(working == TRUE)
         {
+            LCD_Char_1_ClearDisplay();
             Axe1(1050,3);
-            Axe6(500,1);
-            done = TRUE;
+            Axe6(500,3);
+            Axe5(2220,1);
+            Axe3(880,3);
+            Axe2(1920,3);
+            working = FALSE;
         }
         
     } // END while(flag == MAIN)
